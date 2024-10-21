@@ -149,6 +149,12 @@ func ListenToTheWsChannelActivity() {
 			users := getListOfConnectedUsers()
 			response.ConnectedUsers = users
 			broadcastToAll(response)
+		
+		case "user_broadcasted_msg":
+			response.Action = "broadcast"
+			response.Message = fmt.Sprintf("<strong>%s</strong>: %s", event.Username, event.Message)
+			broadcastToAll(response)
+
 		}
 
 		// response.Action = "Got Here 🤘🤓"
